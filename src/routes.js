@@ -19,8 +19,9 @@ routes.post('/sessions', SessionController.store);
 routes.use(authMiddleware);
 routes.put('/users', UserController.update);
 routes.put('/users/:id', UserController.updateSomeone);
-routes.get('/users/', UserController.index);
 routes.get('/users/:id', UserController.searchById);
+routes.get('/users/paginate/index/:page', UserController.index);
+routes.post('/users/paginate/search', UserController.indexSearch);
 
 // Resource de times
 routes.post('/teams', TeamController.store);

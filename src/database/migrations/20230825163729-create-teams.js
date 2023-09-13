@@ -24,6 +24,13 @@ module.exports = {
                 onDelete: 'SET NULL',
                 allowNull: false,
             },
+            mode_id: {
+                type: Sequelize.INTEGER,
+                references: { model: 'modes', key: 'id' },
+                onUpdate: 'CASCADE',
+                onDelete: 'SET NULL',
+                allowNull: false,
+            },
             created_at: {
                 type: Sequelize.DATE,
                 allowNull: false,

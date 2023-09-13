@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Sequelize from 'sequelize';
 import databaseConfig from '../config/database';
 
@@ -8,8 +7,17 @@ import Profile from '../app/models/Profile';
 import Championship from '../app/models/Championship';
 import Classification from '../app/models/Classification';
 import Result from '../app/models/Result';
+import Mode from '../app/models/Mode';
 
-const models = [Profile, User, Team, Championship, Classification, Result];
+const models = [
+    Profile,
+    User,
+    Team,
+    Championship,
+    Classification,
+    Result,
+    Mode,
+];
 
 class Database {
     constructor() {

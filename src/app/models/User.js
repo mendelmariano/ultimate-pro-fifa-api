@@ -28,8 +28,9 @@ class User extends Model {
     }
 
     static associate(models) {
-        this.belongsTo(models.User, {
+        this.belongsTo(models.Profile, {
             foreignKey: 'profile_id',
+            targetKey: 'id',
             as: 'profile',
         });
     }

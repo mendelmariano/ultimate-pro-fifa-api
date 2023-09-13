@@ -1,14 +1,95 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as Yup from 'yup';
 
+import { Op } from 'sequelize';
 import User from '../models/User';
 import Profile from '../models/Profile';
 
 class UserController {
     async index(req, res) {
-        const users = await User.findAll();
+        const { page, pageSize = 10 } = req.params;
 
-        return res.json(users);
+        const offset = (page - 1) * pageSize;
+
+        const users = await User.findAndCountAll({
+            include: [
+                {
+                    model: Profile,
+                    as: 'profile',
+                    attributes: ['name', 'id'],
+                },
+            ],
+            attributes: [
+                'id',
+                'name',
+                'email',
+                'profile_id',
+                'createdAt',
+                'updatedAt',
+            ],
+            limit: pageSize,
+            offset,
+        });
+
+        const totalPages = Math.ceil(users.count / pageSize);
+
+        return res.json({
+            currentPage: parseInt(page, 10),
+            totalPages,
+            totalCount: users.count,
+            users: users.rows,
+        });
+    }
+
+    async indexSearch(req, res) {
+        const { page, pageSize = 10, search } = req.body;
+
+        const offset = (page - 1) * pageSize;
+
+        const whereClause = search
+            ? {
+                  [Op.or]: [
+                      { name: { [Op.like]: `%${search}%` } },
+
+                      { email: { [Op.like]: `%${search}%` } },
+                  ],
+              }
+            : {};
+
+        try {
+            const users = await User.findAndCountAll({
+                include: [
+                    {
+                        model: Profile,
+                        as: 'profile',
+                        attributes: ['name'],
+                    },
+                ],
+                attributes: [
+                    'id',
+                    'name',
+                    'email',
+                    'profile_id',
+                    'createdAt',
+                    'updatedAt',
+                ],
+                where: whereClause, // Aplica a lógica de busca dinâmica
+                limit: pageSize,
+                offset,
+            });
+
+            const totalPages = Math.ceil(users.count / pageSize);
+
+            return res.json({
+                currentPage: parseInt(page, 10),
+                totalPages,
+                totalCount: users.count,
+                users: users.rows,
+            });
+        } catch (error) {
+            // Trate qualquer erro que possa ocorrer durante a consulta ao banco de dados.
+            return res.status(500).json({ error: 'Erro interno do servidor' });
+        }
     }
 
     async store(req, res) {
