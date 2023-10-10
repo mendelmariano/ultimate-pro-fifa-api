@@ -5,7 +5,6 @@ module.exports = {
             'teams',
             [
                 {
-                    id: 1,
                     team: 'maquinaTricolor',
                     mode_id: 1,
                     user_id: 999,

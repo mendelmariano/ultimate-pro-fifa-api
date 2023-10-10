@@ -15,6 +15,14 @@ class Championship extends Model {
         );
         return this;
     }
+
+    static associate(models) {
+        this.belongsTo(models.Mode, {
+            foreignKey: 'mode_id',
+            target: 'id',
+            as: 'mode',
+        });
+    }
 }
 
 export default Championship;

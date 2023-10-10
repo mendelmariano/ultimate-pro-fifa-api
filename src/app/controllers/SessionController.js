@@ -20,15 +20,16 @@ class SessionController {
             return res.status(401).json({ error: 'Senha incorreta. ' });
         }
 
-        const { id, name } = user;
+        const { id, name, whatsapp } = user;
 
         return res.json({
             user: {
                 id,
                 name,
                 email,
+                whatsapp,
             },
-            token: jwt.sign({ id }, authConfig.secret, {
+            token: jwt.sign({ id, user }, authConfig.secret, {
                 expiresIn: authConfig.expiresIn,
             }),
         });

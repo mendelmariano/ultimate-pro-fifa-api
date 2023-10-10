@@ -7,7 +7,9 @@ class Result extends Model {
             {
                 home_goals: Sequelize.INTEGER,
                 away_goals: Sequelize.INTEGER,
-                check: Sequelize.BOOLEAN,
+                owner: Sequelize.INTEGER,
+                status: Sequelize.NUMBER,
+                motivo_cancelamento: Sequelize.STRING,
             },
             {
                 sequelize,

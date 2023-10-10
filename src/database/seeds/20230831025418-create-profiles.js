@@ -5,13 +5,11 @@ module.exports = {
             'profiles',
             [
                 {
-                    id: 0,
                     name: 'Registred',
                     created_at: new Date(),
                     updated_at: new Date(),
                 },
                 {
-                    id: 1,
                     name: 'Administrator',
                     created_at: new Date(),
                     updated_at: new Date(),

@@ -16,6 +16,7 @@ class Mode extends Model {
 
     static associate(models) {
         this.hasMany(models.Team);
+        this.hasMany(models.Championship);
     }
 }
 

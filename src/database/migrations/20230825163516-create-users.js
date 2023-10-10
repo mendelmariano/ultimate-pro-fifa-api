@@ -12,6 +12,11 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
+            whatsapp: {
+                type: Sequelize.STRING,
+                allowNull: false,
+                unique: true,
+            },
             email: {
                 type: Sequelize.STRING,
                 allowNull: false,
@@ -25,7 +30,7 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 references: { model: 'profiles', key: 'id' },
                 onUpdate: 'CASCADE',
-                onDelete: 'SET NULL',
+                onDelete: 'CASCADE',
                 allowNull: false,
             },
             created_at: {

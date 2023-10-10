@@ -22,10 +22,15 @@ class Classification extends Model {
     }
 
     static associate(models) {
-        this.belongsTo(models.Team, { foreignKey: 'team_id', targetKey: 'id' });
+        this.belongsTo(models.Team, {
+            foreignKey: 'team_id',
+            targetKey: 'id',
+            as: 'team',
+        });
         this.belongsTo(models.Championship, {
             foreignKey: 'championship_id',
             targetKey: 'id',
+            as: 'championship',
         });
     }
 }

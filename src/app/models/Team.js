@@ -16,9 +16,14 @@ class Team extends Model {
     }
 
     static associate(models) {
-        this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
+        this.belongsTo(models.User, {
+            foreignKey: 'user_id',
+            target: 'id',
+            as: 'user',
+        });
         this.belongsTo(models.Mode, {
             foreignKey: 'mode_id',
+            target: 'id',
             as: 'mode',
         });
     }
