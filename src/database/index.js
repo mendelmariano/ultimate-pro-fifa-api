@@ -34,6 +34,12 @@ class Database {
                         rejectUnauthorized: false, // very important
                     },
                 },
+                // Use a different storage. Default: none
+                seederStorage: 'json',
+                // Use a different file name. Default: sequelize-data.json
+                seederStoragePath: 'sequelizeData.json',
+                // Use a different table name. Default: SequelizeData
+                seederStorageTableName: 'sequelize_data',
             }
         );
 
