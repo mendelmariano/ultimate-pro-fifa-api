@@ -25,7 +25,11 @@ class Database {
     }
 
     init() {
-        this.connection = new Sequelize(databaseConfig);
+        this.connection = new Sequelize(databaseConfig, {
+            dialectOptions: {
+                ssl: { require: true, rejectUnauthorized: false },
+            },
+        });
 
         models
             .map((model) => model.init(this.connection))
