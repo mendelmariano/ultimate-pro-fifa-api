@@ -25,11 +25,15 @@ class Database {
     }
 
     init() {
-        this.connection = new Sequelize(databaseConfig, {
-            dialectOptions: {
-                ssl: { require: true, rejectUnauthorized: false },
-            },
-        });
+        this.connection = new Sequelize(
+            process.env.DATABASE_URL || databaseConfig,
+            {
+                dialect: 'postgres',
+                dialectOptions: {
+                    ssl: true,
+                },
+            }
+        );
 
         models
             .map((model) => model.init(this.connection))
