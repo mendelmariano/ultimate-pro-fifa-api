@@ -28,9 +28,7 @@ class Database {
         this.connection = new Sequelize(
             `${process.env.DATABASE_URI}?sslmode=require` || databaseConfig,
             {
-                url: process.env.DATABASE_URI,
                 dialect: 'postgres',
-                logging: false,
                 dialectOptions: {
                     ssl: {
                         rejectUnauthorized: false, // very important
