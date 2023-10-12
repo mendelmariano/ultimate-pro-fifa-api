@@ -1,5 +1,4 @@
 import Sequelize from 'sequelize';
-import databaseConfig from '../config/database';
 
 import User from '../app/models/User';
 import Team from '../app/models/Team';
@@ -26,7 +25,15 @@ class Database {
 
     init() {
         this.connection = new Sequelize(
-            process.env.DATABASE_URL || databaseConfig
+            `${process.env.DATABASE_URL}?sslmode=require`,
+            {
+                dialect: 'postgres',
+                dialectOptions: {
+                    ssl: {
+                        rejectUnauthorized: false, // very important
+                    },
+                },
+            }
         );
 
         models
