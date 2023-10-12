@@ -12,6 +12,11 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
+const corsOptions = {
+    origin: 'https://ultimate-clubs-estatico-lmm6yynxb-mendelmarianos-projects.vercel.app, localhost', // Substitua pela origem que você deseja permitir
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+};
+
 class App {
     constructor() {
         this.server = express();
@@ -21,7 +26,7 @@ class App {
     }
 
     middlewares() {
-        this.server.use(cors());
+        this.server.use(cors(corsOptions));
         this.server.use(express.json());
     }
 
