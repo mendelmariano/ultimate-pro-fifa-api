@@ -6,6 +6,12 @@ import routes from './routes';
 // Importando nossa database
 import './database';
 
+/* eslint-disable import/no-extraneous-dependencies */
+// eslint-disable-next-line import/order
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
 class App {
     constructor() {
         this.server = express();

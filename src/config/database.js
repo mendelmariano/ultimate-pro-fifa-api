@@ -9,4 +9,10 @@ module.exports = {
         underscored: true,
         underscoredAll: true,
     },
+    logging: false,
+    dialectOptions: {
+        ssl: {
+            rejectUnauthorized: false, // very important
+        },
+    },
 };
