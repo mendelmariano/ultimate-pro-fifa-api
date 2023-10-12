@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-
+import databaseConfig from '../config/database';
 import User from '../app/models/User';
 import Team from '../app/models/Team';
 import Profile from '../app/models/Profile';
@@ -35,6 +35,8 @@ class Database {
                 },
             }
         );
+
+        /* this.connection = new Sequelize(databaseConfig); */
 
         models
             .map((model) => model.init(this.connection))
