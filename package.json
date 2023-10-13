@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.js",
     "start": "npm run build && node build/server.js",
-    "build": "npx tsc && npx sequelize db:migrate && npx sequelize db:seed:all"
+    "build": "npx tsc && npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",
