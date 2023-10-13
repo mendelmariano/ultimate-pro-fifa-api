@@ -13,11 +13,9 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const corsOptions = {
-    origin: [
-        'https://ultimate-clubs-estatico-lmm6yynxb-mendelmarianos-projects.vercel.app',
-        'http://localhost:4207',
-    ], // Substitua pela origem que você deseja permitir
+    origin: '*', // Substitua pela origem que você deseja permitir
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
 };
 
 class App {
