@@ -16,6 +16,8 @@ const corsOptions = {
     origin: '*', // Substitua pela origem que você deseja permitir
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
+    allowedHeaders: '*',
+    maxAge: 86400,
 };
 
 class App {
